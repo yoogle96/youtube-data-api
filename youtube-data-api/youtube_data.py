@@ -19,8 +19,15 @@ class YoutubeDataAPI:
         res = requests.get(endpoint, params).json()
         print(json.dumps(res, indent=2, ensure_ascii=False))
 
+    def getCommentThreads(self):
+        key = os.getenv('youtube_data_api_key')
+        endpoint = 'https://www.googleapis.com/youtube/v3/commentThreads'
+        params = {'key' : key, 'part' : 'snippet', 'videoId' : 'ax2mwUxv0bU', 'maxResults' : 5}
+        res = requests.get(endpoint, params).json()
+        print(json.dumps(res, indent=2, ensure_ascii=False))
+
         
 if __name__ == "__main__":
     a = YoutubeDataAPI()
-    a.getComments()
+    a.getCommentThreads()
     pass
